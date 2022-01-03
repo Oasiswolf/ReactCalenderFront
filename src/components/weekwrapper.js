@@ -28,7 +28,7 @@ export default function Weeks(props) {
             <DayTitle />
             <div className='WeekSetup'>
 
-                {renderCalenderBoxes}
+                { renderCalenderBoxes() }
 
             </div>
         </div>
