@@ -12,7 +12,11 @@ export default class DayWrapper extends Component {
         this.state ={
             reminderExists: reminder ? true : false,
             textInput: reminder ? reminder.text : ""
+
         }
+        
+        this.handleSubmit = this.handleSubmit.bind(this)
+
     }
 
     handleSubmit() {
@@ -21,23 +25,26 @@ export default class DayWrapper extends Component {
                  method: "POST",
                  headers: { "content-type": "application/json" },
                  body: JSON.stringify({
-                     text:this.state.textInput,
+                     text: this.state.textInput,
                      date: this.props.date,
-                     month_id: this.props.month_id})
+                     month_id: this.props.month.id})
                     }
                     ).then(response => response.json())
                     .then(data=> {
-                        if(typeof Data === "string") {console.log(data);
+                        if(typeof data === "string") {console.log(data);
                         }else {
                             this.setState({reminderExists: true})
                         }
                     })
+                    .catch((error) => console.log("Error adding reminder", error));
             } else if (this.state.reminderExists && this.state.textInput !== "") {
                 fetch(`https://api-calender-oasis.herokuapp.com/reminder/update/${this.props.month.id}/${this.props.date}`,
                 {
-                    methods: "PUT",
-                    headers: {"content-type": "application/json"},
-                    body: JSON.stringify({text:this.state.textInput})
+                    method: "PUT",
+                    headers: { "content-type": "application/json" },
+                    body: JSON.stringify({
+                        text: this.state.textInput
+                    })
                 })
                 .then(response => response.json())
                 .then(data => {
@@ -45,18 +52,22 @@ export default class DayWrapper extends Component {
                         console.log(data)
                     }
                 })
+                .catch((error) => console.log("Error updateing reminder", error));
             }
         }
     
     render() {
 
         return(
-                <div className="day">
+                <div className={this.props.overflow ? "day-overflow" :"day"}>
         
                     <span className="Date">{this.props.date}</span>
                     <textarea
                         className="reminderField"
                         disabled={this.props.overflow}
+                        onBlur={this.handleSubmit}
+                        value={this.state.textInput}
+                        onChange={((event) => this.setState({textInput: event.target.value})).bind(this)}
                     >
                     
                     </textarea>

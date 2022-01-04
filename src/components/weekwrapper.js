@@ -13,7 +13,7 @@ export default function Weeks(props) {
         }
 
         for(let i=1; i <= props.month.days_in_month; i++) {
-            calenderBoxesArray.push(<DayWrapper key={`${props.month.id}-${i}`} date={i} />)
+            calenderBoxesArray.push(<DayWrapper key={`${props.month.id}-${i}`} date={i} month={props.month} />)
         }
 
         for(let i=1; i <= 42 - props.month.days_in_month - props.month.start_day; i++) {

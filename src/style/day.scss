@@ -9,6 +9,8 @@
         text-align: center;
         border: 1px solid lime;
         border-radius: 5px;
+        background-color: navy;
+        color: oldlace;
     }
 
 }
@@ -21,6 +23,36 @@
     align-items: center;
     border: 1px solid navy;
     border-radius: 5px;
+    background-color: crimson;
+
+    .Date {
+        display: flex;
+        justify-content: center;
+        align-self: flex-start;
+        padding: 4px 4px 0px 4px;
+        border: 0.5px solid black;
+        font-weight: 600;
+        background-color: black;
+        color: white;
+    }
+
+    .reminderField{
+        margin-top: 20px;
+        width: 100%;
+        font-size: 9px;
+        background-color: steelblue;
+        color: yellow;
+    }
+}
+.day-overflow {
+    display: flex;
+    height: 75px;
+    width: 100px;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid navy;
+    border-radius: 5px;
+    background-color: darkolivegreen;
 
     .Date {
         display: flex;
@@ -34,5 +66,8 @@
     .reminderField{
         margin-top: 20px;
         width: 100%;
+        font-size: 9px;
+        background-color: slategrey;
+        color: snow;
     }
 }
